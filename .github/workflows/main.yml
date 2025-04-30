@@ -37,7 +37,11 @@ jobs:
         with:
           name: jar-file
           path: app.jar
-
+      - name: Build and analyze sonar scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonar --info
+    
   build-image:
 
     runs-on: ubuntu-latest
